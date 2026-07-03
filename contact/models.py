@@ -12,7 +12,7 @@ class ContactMessage(models.Model):
     ]
 
     name = models.CharField(max_length=150)
-    phone = models.CharField(max_length=40)
+    phone = models.CharField(max_length=40, blank=True)
     father_name = models.CharField(max_length=150, blank=True)
     mother_name = models.CharField(max_length=150, blank=True)
     blood_group = models.CharField(max_length=3, choices=BLOOD_GROUP_CHOICES, blank=True)
