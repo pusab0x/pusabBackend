@@ -22,7 +22,7 @@ class ProgramStatSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProgramStat
-        fields = ["id", "label", "value", "order"]
+        fields = ["id", "year", "label", "value", "order"]
 
 
 class ProgramGalleryImageSerializer(serializers.ModelSerializer):
@@ -30,7 +30,7 @@ class ProgramGalleryImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProgramGalleryImage
-        fields = ["id", "image_url", "caption", "order"]
+        fields = ["id", "year", "image_url", "caption", "order"]
 
 
 class ProgramTestimonialSerializer(serializers.ModelSerializer):
@@ -38,7 +38,7 @@ class ProgramTestimonialSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProgramTestimonial
-        fields = ["id", "name", "role", "quote", "photo_url", "order"]
+        fields = ["id", "year", "name", "role", "quote", "photo_url", "order"]
 
 
 class ProgramPageSerializer(serializers.ModelSerializer):

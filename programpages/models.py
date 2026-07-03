@@ -40,39 +40,45 @@ class ProgramObjective(models.Model):
 
 
 class ProgramStat(models.Model):
-    """A small stat tile (e.g. "Members reached" -> "500+") on a program page."""
+    """A small stat tile (e.g. "Members reached" -> "500+") on a program page.
+    Tagged with a year so recurring, once-a-year programs (like the Annual
+    Reunion) can show a different set of stats per edition."""
 
     page = models.ForeignKey(ProgramPage, related_name="stats", on_delete=models.CASCADE)
+    year = models.PositiveIntegerField(null=True, blank=True)
     label = models.CharField(max_length=100)
     value = models.CharField(max_length=60)
     order = models.PositiveIntegerField(default=0)
 
     class Meta:
-        ordering = ["order", "id"]
+        ordering = ["-year", "order", "id"]
 
     def __str__(self):
         return f"{self.label}: {self.value}"
 
 
 class ProgramGalleryImage(models.Model):
-    """A photo in a program page's gallery."""
+    """A photo in a program page's gallery, tagged with the year it's from."""
 
     page = models.ForeignKey(ProgramPage, related_name="gallery", on_delete=models.CASCADE)
+    year = models.PositiveIntegerField(null=True, blank=True)
     image_url = models.URLField(max_length=600)
     caption = models.CharField(max_length=200, blank=True)
     order = models.PositiveIntegerField(default=0)
 
     class Meta:
-        ordering = ["order", "id"]
+        ordering = ["-year", "order", "id"]
 
     def __str__(self):
         return self.caption or f"Photo #{self.pk}"
 
 
 class ProgramTestimonial(models.Model):
-    """A participant/beneficiary quote on a program page."""
+    """A participant/beneficiary quote on a program page, tagged with the
+    year it's from."""
 
     page = models.ForeignKey(ProgramPage, related_name="testimonials", on_delete=models.CASCADE)
+    year = models.PositiveIntegerField(null=True, blank=True)
     name = models.CharField(max_length=150)
     role = models.CharField(max_length=150, blank=True)
     quote = models.TextField()
@@ -80,7 +86,7 @@ class ProgramTestimonial(models.Model):
     order = models.PositiveIntegerField(default=0)
 
     class Meta:
-        ordering = ["order", "id"]
+        ordering = ["-year", "order", "id"]
 
     def __str__(self):
         return f"{self.name} — {self.quote[:40]}"
