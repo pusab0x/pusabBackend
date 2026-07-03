@@ -7,7 +7,7 @@ class ContactMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContactMessage
         fields = [
-            "id", "name", "phone", "subject",
+            "id", "name", "phone", "father_name", "mother_name", "blood_group", "subject",
             "university", "session", "union_name", "village", "school", "college",
             "message", "email", "is_read", "created_at",
         ]

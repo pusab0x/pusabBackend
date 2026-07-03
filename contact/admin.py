@@ -5,6 +5,6 @@ from .models import ContactMessage
 
 @admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):
-    list_display = ["name", "phone", "university", "session", "subject", "is_read", "created_at"]
-    list_filter = ["is_read", "created_at", "university"]
-    search_fields = ["name", "phone", "email", "university", "village", "school", "college", "message"]
+    list_display = ["name", "phone", "blood_group", "university", "session", "subject", "is_read", "created_at"]
+    list_filter = ["is_read", "created_at", "university", "blood_group"]
+    search_fields = ["name", "phone", "email", "father_name", "mother_name", "university", "village", "school", "college", "message"]
