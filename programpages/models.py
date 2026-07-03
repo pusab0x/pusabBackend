@@ -24,11 +24,12 @@ class ProgramPage(models.Model):
 
 
 class ProgramObjective(models.Model):
-    """An ordered bullet point under a program page's "Objectives" section."""
+    """A compact photo + short-note card under a program page's "Objectives" section."""
 
     page = models.ForeignKey(ProgramPage, related_name="objectives", on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     description = models.CharField(max_length=300, blank=True)
+    image_url = models.URLField(max_length=600, blank=True)
     order = models.PositiveIntegerField(default=0)
 
     class Meta:

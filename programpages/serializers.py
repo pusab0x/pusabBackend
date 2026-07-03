@@ -14,7 +14,7 @@ class ProgramObjectiveSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProgramObjective
-        fields = ["id", "title", "description", "order"]
+        fields = ["id", "title", "description", "image_url", "order"]
 
 
 class ProgramStatSerializer(serializers.ModelSerializer):
