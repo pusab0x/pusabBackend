@@ -230,8 +230,11 @@ PAGES = [
     },
     {
         "slug": "felicitation",
-        "title": "Felicitation & Freshers' Reception",
-        "tagline": "Honouring achievers, welcoming the next generation — one stage, two celebrations.",
+        "title": "Felicitation & Freshers Reception",
+        "tagline": (
+            "A memorable gathering to honor the outstanding achievers and warmly welcome the "
+            "newest members to the PUSAB family."
+        ),
         "overview": (
             "Each year PUSAB brings achievers and new entrants onto one stage — recognising "
             "members who carry Bishwambarpur's name forward, and formally welcoming freshers "
@@ -240,9 +243,25 @@ PAGES = [
         "eligibility": "Achievers are selected by merit; all incoming freshers from Bishwambarpur are welcomed.",
         "process": "Held as a single combined ceremony, usually timed around the start of a new academic session.",
         "schedule_note": "Once a year, timed with the new academic session.",
+        "event_date": "To Be Announced",
+        "venue": "To Be Announced",
+        "register_label": "I'm Excited!",
+        "cta_title": "Be a Part of This Special Day!",
+        "cta_subtitle": "Let's celebrate achievements and welcome new journeys together.",
         "objectives": [
-            ("Felicitate achievers", "Recognise members who achieved academic or professional milestones."),
-            ("Welcome freshers", "Formally welcome new students into the PUSAB family."),
+            ("Recognize Achievements", "Honoring hard work and outstanding contributions.", "award"),
+            ("Welcome New Members", "A warm welcome to our new members joining PUSAB.", "users"),
+            ("Inspire Excellence", "Motivating everyone to aim higher and achieve more.", "sparkles"),
+            ("Build Connections", "Bringing together members, alumni and well-wishers.", "heart"),
+            ("Create Memories", "Cherishing moments that last a lifetime.", "camera"),
+        ],
+        "info_items": [
+            ("award", "Honoring Excellence", "Celebrating the success and dedication of our achievers."),
+            ("heart", "Warm Welcome", "A heartfelt welcome to our freshers and new family members."),
+            ("mic", "Inspiring Speeches", "Words of wisdom and motivation from leaders and guests."),
+            ("camera", "Memorable Moments", "Capturing smiles, achievements and beautiful memories."),
+            ("music", "Cultural Vibes", "Enjoy amazing cultural performances and engaging activities."),
+            ("users", "Stronger Together", "Building bonds and creating a stronger PUSAB community."),
         ],
         "stats": [("Ceremony", "Combined"), ("Held", "Annually")],
     },
