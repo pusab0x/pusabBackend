@@ -229,30 +229,37 @@ PAGES = [
     {
         "slug": "iftar-mahfil",
         "title": "Iftar Mahfil",
-        "tagline": "Breaking fast together, strengthening bonds of faith and friendship.",
+        "tagline": (
+            "An evening of blessings, togetherness and reflection. Let's break our fast together "
+            "and strengthen the bond of brotherhood."
+        ),
         "overview": (
-            "Every Ramadan, PUSAB brings members together for an evening Iftar Mahfil — a shared "
-            "meal, reflection and community, right as the day's fast comes to an end."
+            "Iftar Mahfil is a beautiful tradition of PUSAB where members come together in the "
+            "spirit of Ramadan. It's a time for pray, gratitude, and togetherness that reminds us "
+            "of the true essence of community."
         ),
         "eligibility": "Open to all PUSAB members, alumni, and their families.",
         "process": "Members register ahead through the PUSAB group; the organizing team handles venue and catering.",
         "schedule_note": "Held once a year, during Ramadan.",
-        "event_date": "Ramadan, Every Year",
-        "venue": "Bishwambarpur, Sunamganj",
-        "event_time": "Just before Maghrib",
+        "event_date": "Ramadan, Every Year (TBA)",
+        "venue": "Bishwambarpur",
+        "event_time": "After Asr (To Maghrib)",
         "register_label": "Register Interest",
-        "cta_title": "Join us this Ramadan for an evening of togetherness.",
-        "cta_subtitle": "Mark your calendar and break your fast with the PUSAB family.",
+        "cta_title": "Let's make this Ramadan memorable together.",
+        "cta_subtitle": "Be a part of this blessed gathering and earn the reward of togetherness.",
         "objectives": [
-            ("Shared Iftar", "Breaking fast together as one PUSAB family.", "utensils"),
-            ("Community Bonding", "Strengthening ties among members and alumni.", "users"),
-            ("Reflection & Dua", "A moment of gratitude and collective prayer.", "heart"),
+            ("Strengthen Brotherhood", "", "users"),
+            ("Spiritual Reflection", "", "music"),
+            ("Community Bonding", "", "heart"),
+            ("Blessings & Gratitude", "", "sparkles"),
         ],
         "info_items": [
-            ("utensils", "Shared Meal", "A community Iftar spread for everyone."),
-            ("users", "Open to All", "Members, alumni and their families welcome."),
-            ("heart", "Dua & Reflection", "A shared moment of gratitude together."),
-            ("camera", "Photo Moments", "Capturing the evening's warmth and togetherness."),
+            ("sparkles", "Quran Tilawat & Dua", "Soothing recitation and heartfelt duas."),
+            ("mic", "Short Islamic Talk", "Inspiring reminders for our daily life."),
+            ("utensils", "Iftar & Dinner", "Delicious iftar and dinner for everyone."),
+            ("users", "Unity & Togetherness", "Building stronger connections."),
+            ("camera", "Memorable Moments", "Capture beautiful memories."),
+            ("gift", "Special Giveaways", "Exciting surprises for participants."),
         ],
         "stats": [("Format", "Evening"), ("Held", "Annually, in Ramadan")],
     },
