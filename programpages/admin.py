@@ -7,6 +7,7 @@ from .models import (
     ProgramPage,
     ProgramStat,
     ProgramTestimonial,
+    ProgramWebinar,
 )
 
 
@@ -35,6 +36,11 @@ class ProgramTestimonialInline(admin.TabularInline):
     extra = 1
 
 
+class ProgramWebinarInline(admin.TabularInline):
+    model = ProgramWebinar
+    extra = 1
+
+
 @admin.register(ProgramPage)
 class ProgramPageAdmin(admin.ModelAdmin):
     list_display = ["slug", "year", "title", "updated_at"]
@@ -46,4 +52,5 @@ class ProgramPageAdmin(admin.ModelAdmin):
         ProgramStatInline,
         ProgramGalleryImageInline,
         ProgramTestimonialInline,
+        ProgramWebinarInline,
     ]

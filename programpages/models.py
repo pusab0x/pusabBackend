@@ -130,6 +130,36 @@ class ProgramGalleryImage(models.Model):
         return self.caption or f"Photo #{self.pk}"
 
 
+class ProgramWebinar(models.Model):
+    """One upcoming session card on the Online Events page (e.g. a talk
+    show, workshop, seminar or panel discussion) — distinct from
+    ProgramTestimonial since it's a scheduled session with a speaker, not a
+    participant quote."""
+
+    STATUS_CHOICES = [
+        ("live", "Live"),
+        ("upcoming", "Upcoming"),
+    ]
+
+    page = models.ForeignKey(ProgramPage, related_name="webinars", on_delete=models.CASCADE)
+    tag = models.CharField(max_length=60, blank=True)
+    title = models.CharField(max_length=200)
+    speaker_name = models.CharField(max_length=150, blank=True)
+    speaker_role = models.CharField(max_length=150, blank=True)
+    speaker_photo_url = models.URLField(max_length=600, blank=True)
+    event_date = models.CharField(max_length=100, blank=True)
+    event_time = models.CharField(max_length=100, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="upcoming")
+    register_url = models.URLField(max_length=600, blank=True)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["order", "id"]
+
+    def __str__(self):
+        return self.title
+
+
 class ProgramTestimonial(models.Model):
     """A participant/beneficiary quote on a program page edition."""
 

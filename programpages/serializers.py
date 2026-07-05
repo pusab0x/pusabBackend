@@ -7,6 +7,7 @@ from .models import (
     ProgramPage,
     ProgramStat,
     ProgramTestimonial,
+    ProgramWebinar,
 )
 
 
@@ -50,6 +51,17 @@ class ProgramTestimonialSerializer(serializers.ModelSerializer):
         fields = ["id", "name", "role", "quote", "photo_url", "order"]
 
 
+class ProgramWebinarSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
+
+    class Meta:
+        model = ProgramWebinar
+        fields = [
+            "id", "tag", "title", "speaker_name", "speaker_role", "speaker_photo_url",
+            "event_date", "event_time", "status", "register_url", "order",
+        ]
+
+
 class ProgramPageSerializer(serializers.ModelSerializer):
     """Reads/writes one (slug, year) edition of a program page plus all its
     nested content in one shot. Nested lists are fully replaced on write —
@@ -61,6 +73,7 @@ class ProgramPageSerializer(serializers.ModelSerializer):
     stats = ProgramStatSerializer(many=True, required=False)
     gallery = ProgramGalleryImageSerializer(many=True, required=False)
     testimonials = ProgramTestimonialSerializer(many=True, required=False)
+    webinars = ProgramWebinarSerializer(many=True, required=False)
 
     class Meta:
         model = ProgramPage
@@ -70,7 +83,7 @@ class ProgramPageSerializer(serializers.ModelSerializer):
             "event_date", "venue", "event_time",
             "register_label", "register_url",
             "cta_title", "cta_subtitle",
-            "objectives", "info_items", "stats", "gallery", "testimonials",
+            "objectives", "info_items", "stats", "gallery", "testimonials", "webinars",
             "updated_at",
         ]
         read_only_fields = ["id", "updated_at"]
@@ -97,6 +110,7 @@ class ProgramPageSerializer(serializers.ModelSerializer):
             "stats": validated_data.pop("stats", None),
             "gallery": validated_data.pop("gallery", None),
             "testimonials": validated_data.pop("testimonials", None),
+            "webinars": validated_data.pop("webinars", None),
         }
 
     @staticmethod
@@ -107,6 +121,7 @@ class ProgramPageSerializer(serializers.ModelSerializer):
             "stats": ProgramStat,
             "gallery": ProgramGalleryImage,
             "testimonials": ProgramTestimonial,
+            "webinars": ProgramWebinar,
         }
         for key, model in model_map.items():
             rows = nested.get(key)

@@ -13,7 +13,7 @@ from datetime import date
 
 from django.core.management.base import BaseCommand
 
-from programpages.models import ProgramPage, ProgramObjective, ProgramInfoItem, ProgramStat
+from programpages.models import ProgramPage, ProgramObjective, ProgramInfoItem, ProgramStat, ProgramWebinar
 
 SEED_YEAR = date.today().year
 
@@ -195,25 +195,71 @@ PAGES = [
     {
         "slug": "picnic",
         "title": "Annual Picnic",
-        "tagline": "A full day outdoors, games, and food across generations of members.",
+        "tagline": "A day of fun, friendship, and unforgettable memories with the PUSAB family.",
         "overview": (
-            "The Annual Picnic is a lighter, family-friendly counterpart to the Reunion — a "
-            "full day out with games, shared meals and casual bonding across generations of "
-            "PUSAB members, usually somewhere scenic near Sunamganj."
+            "The Annual Picnic is one of the most awaited events of PUSAB. It's a perfect "
+            "opportunity to step away from the routine, enjoy nature, strengthen bonds, and "
+            "create memories that last a lifetime."
         ),
-        "eligibility": "Open to all PUSAB members and their families.",
+        "eligibility": "All PUSAB members, alumni, and their families are warmly invited.",
         "process": "Members register ahead through the PUSAB group; the organizing team handles transport and venue.",
         "schedule_note": "Usually held once a year, in the winter months.",
+        "event_date": "February, Every Year",
+        "venue": "Narsingdi Recreation Park, Narsingdi",
+        "event_time": "9:00 AM - 5:00 PM",
+        "register_label": "Register Interest",
+        "cta_title": "Let's make this picnic the best one yet!",
+        "cta_subtitle": "Mark your calendar and get ready for a day full of joy and togetherness.",
         "objectives": [
-            ("Community bonding", "A relaxed day for members and families to connect."),
-            ("Games & activities", "Outdoor games and friendly competitions for all ages."),
+            ("Build stronger connections", "", "users"),
+            ("Enjoy games & fun", "", "music"),
+            ("Delicious food & refreshments", "", "utensils"),
+            ("A day full of smiles & memories", "", "heart"),
+        ],
+        "info_items": [
+            ("target", "Exciting Games", "Fun outdoor games for all ages."),
+            ("music", "Music & Entertainment", "Live music, DJ & entertaining performances."),
+            ("utensils", "Delicious Food", "Tasty meals and snacks for everyone."),
+            ("camera", "Photo Moments", "Capture beautiful memories together."),
+            ("gift", "Lucky Draws", "Exciting prizes and surprises."),
+            ("users", "Family Fun", "Activities for kids & family bonding."),
         ],
         "stats": [("Format", "Full-day"), ("Held", "Annually")],
     },
     {
+        "slug": "iftar-mahfil",
+        "title": "Iftar Mahfil",
+        "tagline": "Breaking fast together, strengthening bonds of faith and friendship.",
+        "overview": (
+            "Every Ramadan, PUSAB brings members together for an evening Iftar Mahfil — a shared "
+            "meal, reflection and community, right as the day's fast comes to an end."
+        ),
+        "eligibility": "Open to all PUSAB members, alumni, and their families.",
+        "process": "Members register ahead through the PUSAB group; the organizing team handles venue and catering.",
+        "schedule_note": "Held once a year, during Ramadan.",
+        "event_date": "Ramadan, Every Year",
+        "venue": "Bishwambarpur, Sunamganj",
+        "event_time": "Just before Maghrib",
+        "register_label": "Register Interest",
+        "cta_title": "Join us this Ramadan for an evening of togetherness.",
+        "cta_subtitle": "Mark your calendar and break your fast with the PUSAB family.",
+        "objectives": [
+            ("Shared Iftar", "Breaking fast together as one PUSAB family.", "utensils"),
+            ("Community Bonding", "Strengthening ties among members and alumni.", "users"),
+            ("Reflection & Dua", "A moment of gratitude and collective prayer.", "heart"),
+        ],
+        "info_items": [
+            ("utensils", "Shared Meal", "A community Iftar spread for everyone."),
+            ("users", "Open to All", "Members, alumni and their families welcome."),
+            ("heart", "Dua & Reflection", "A shared moment of gratitude together."),
+            ("camera", "Photo Moments", "Capturing the evening's warmth and togetherness."),
+        ],
+        "stats": [("Format", "Evening"), ("Held", "Annually, in Ramadan")],
+    },
+    {
         "slug": "online",
         "title": "Online Events",
-        "tagline": "Webinars and AMAs that reach members wherever they are.",
+        "tagline": "Bringing knowledge, inspiration and community together from anywhere in the world.",
         "overview": (
             "PUSAB runs a rolling calendar of online events — career webinars, admission AMAs, "
             "and one-to-one mentoring sessions — so members and aspirants can get guidance no "
@@ -222,11 +268,28 @@ PAGES = [
         "eligibility": "Open to PUSAB members and Bishwambarpur students preparing for admissions or careers.",
         "process": "Sessions are announced through PUSAB's social pages and group; joining links are shared ahead of each event.",
         "schedule_note": "Monthly AMAs, plus occasional special webinars.",
+        "register_label": "Subscribe",
+        "cta_title": "Stay Updated",
+        "cta_subtitle": "Subscribe to get notified about our upcoming online events.",
         "objectives": [
-            ("Admission mentoring", "One-to-one guidance for university aspirants."),
-            ("Career webinars", "Live Q&A with alumni across different professions."),
+            ("Open to All", "All PUSAB members, alumni and well-wishers can join.", "users"),
+            ("Live & Interactive", "Engage in real-time sessions with experts and peers.", "calendar"),
+            ("Learn & Grow", "Expand your knowledge and develop new skills.", "target"),
+            ("Certificate Provided", "Get digital certificates for your participation.", "award"),
+        ],
+        "info_items": [
+            ("users", "Expert Speakers", "Learn from experienced professionals and thought leaders."),
+            ("target", "Global Community", "Connect with PUSAB members from around the world."),
+            ("sparkles", "Flexible & Accessible", "Join from anywhere, anytime with ease."),
+            ("graduation-cap", "Knowledge for Impact", "Gain insights that inspire and create positive change."),
         ],
         "stats": [("Frequency", "Monthly"), ("Reach", "Online")],
+        "webinars": [
+            ("Talk Show", "The Power of Education to Change Lives", "Dr. A.K.M. Rafiqul Islam", "Professor, DU", "20 May 2025", "08:00 PM (GMT+6)", "live"),
+            ("Workshop", "Personal Growth & Leadership Skills", "Tasnim Haque", "Corporate Trainer", "24 May 2025", "07:00 PM (GMT+6)", "upcoming"),
+            ("Seminar", "Financial Literacy for Students", "Mohammad Foysal", "Financial Advisor", "30 May 2025", "08:00 PM (GMT+6)", "upcoming"),
+            ("Discussion", "Mental Health Awareness", "Dr. Farzana Islam", "Clinical Psychologist", "05 June 2025", "07:30 PM (GMT+6)", "upcoming"),
+        ],
     },
     {
         "slug": "felicitation",
@@ -293,6 +356,7 @@ class Command(BaseCommand):
                 existing.objectives.all().delete()
                 existing.info_items.all().delete()
                 existing.stats.all().delete()
+                existing.webinars.all().delete()
                 page = existing
             else:
                 page = ProgramPage(slug=slug, year=SEED_YEAR)
@@ -321,6 +385,20 @@ class Command(BaseCommand):
                 ProgramInfoItem.objects.create(page=page, icon=icon, label=label, value=value, order=i)
             for i, (label, value) in enumerate(data["stats"]):
                 ProgramStat.objects.create(page=page, label=label, value=value, order=i)
+            for i, (tag, title, speaker_name, speaker_role, event_date, event_time, status) in enumerate(
+                data.get("webinars", [])
+            ):
+                ProgramWebinar.objects.create(
+                    page=page,
+                    tag=tag,
+                    title=title,
+                    speaker_name=speaker_name,
+                    speaker_role=speaker_role,
+                    event_date=event_date,
+                    event_time=event_time,
+                    status=status,
+                    order=i,
+                )
 
             created += 1
 
