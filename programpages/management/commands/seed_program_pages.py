@@ -9,9 +9,13 @@ Usage (from the backend/ directory):
 """
 from __future__ import annotations
 
+from datetime import date
+
 from django.core.management.base import BaseCommand
 
 from programpages.models import ProgramPage, ProgramObjective, ProgramStat
+
+SEED_YEAR = date.today().year
 
 PAGES = [
     {
@@ -181,7 +185,7 @@ class Command(BaseCommand):
 
         for data in PAGES:
             slug = data["slug"]
-            existing = ProgramPage.objects.filter(slug=slug).first()
+            existing = ProgramPage.objects.filter(slug=slug, year=SEED_YEAR).first()
             if existing and not replace:
                 skipped += 1
                 continue
@@ -191,7 +195,7 @@ class Command(BaseCommand):
                 existing.stats.all().delete()
                 page = existing
             else:
-                page = ProgramPage(slug=slug)
+                page = ProgramPage(slug=slug, year=SEED_YEAR)
 
             page.title = data["title"]
             page.tagline = data["tagline"]

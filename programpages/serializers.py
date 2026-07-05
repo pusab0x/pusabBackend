@@ -22,7 +22,7 @@ class ProgramStatSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProgramStat
-        fields = ["id", "year", "label", "value", "order"]
+        fields = ["id", "label", "value", "order"]
 
 
 class ProgramGalleryImageSerializer(serializers.ModelSerializer):
@@ -30,7 +30,7 @@ class ProgramGalleryImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProgramGalleryImage
-        fields = ["id", "year", "image_url", "caption", "order"]
+        fields = ["id", "image_url", "caption", "order"]
 
 
 class ProgramTestimonialSerializer(serializers.ModelSerializer):
@@ -38,14 +38,14 @@ class ProgramTestimonialSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProgramTestimonial
-        fields = ["id", "year", "name", "role", "quote", "photo_url", "order"]
+        fields = ["id", "name", "role", "quote", "photo_url", "order"]
 
 
 class ProgramPageSerializer(serializers.ModelSerializer):
-    """Reads/writes a program page plus all its nested content in one shot.
-    Nested lists are fully replaced on write — the dashboard always sends
-    the complete list for each section, so a simple delete-and-recreate
-    keeps this predictable without diffing ids."""
+    """Reads/writes one (slug, year) edition of a program page plus all its
+    nested content in one shot. Nested lists are fully replaced on write —
+    the dashboard always sends the complete list for each section, so a
+    simple delete-and-recreate keeps this predictable without diffing ids."""
 
     objectives = ProgramObjectiveSerializer(many=True, required=False)
     stats = ProgramStatSerializer(many=True, required=False)
@@ -55,7 +55,7 @@ class ProgramPageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProgramPage
         fields = [
-            "id", "slug", "title", "tagline", "hero_image_url",
+            "id", "slug", "year", "title", "tagline", "hero_image_url",
             "overview", "eligibility", "process", "schedule_note",
             "objectives", "stats", "gallery", "testimonials",
             "updated_at",

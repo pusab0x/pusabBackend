@@ -31,6 +31,7 @@ class ProgramTestimonialInline(admin.TabularInline):
 
 @admin.register(ProgramPage)
 class ProgramPageAdmin(admin.ModelAdmin):
-    list_display = ["slug", "title", "updated_at"]
+    list_display = ["slug", "year", "title", "updated_at"]
+    list_filter = ["slug", "year"]
     search_fields = ["slug", "title"]
     inlines = [ProgramObjectiveInline, ProgramStatInline, ProgramGalleryImageInline, ProgramTestimonialInline]
