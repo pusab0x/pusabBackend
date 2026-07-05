@@ -148,11 +148,16 @@ PAGES = [
     {
         "slug": "humanity",
         "title": "PUSAB for Humanity",
-        "tagline": "Standing with Bishwambarpur through floods, illness and hardship.",
+        "tagline": (
+            "A movement of empathy, service and solidarity working towards a better and more "
+            "compassionate society for all."
+        ),
         "overview": (
-            "PUSAB for Humanity is the association's humanitarian response arm — organising "
-            "disaster relief, free medical camps and blanket distribution whenever the community "
-            "needs it most, particularly during Sunamganj's recurring floods."
+            "PUSAB for Humanity is our promise to give back to society. Through collective "
+            "efforts, we work for the welfare of underprivileged people and create opportunities "
+            "for a dignified life.\n\n"
+            "From food and relief distribution to education, health and environment initiatives, "
+            "every effort is powered by PUSAB members and the partners who stand with us."
         ),
         "eligibility": "Relief and aid are directed at flood-affected and underserved families in Bishwambarpur Upazila.",
         "process": (
@@ -160,12 +165,32 @@ PAGES = [
             "packages and on-the-ground distribution, often alongside local volunteers."
         ),
         "schedule_note": "Activated as needed — flood season relief, and periodic medical camps.",
+        "register_label": "Learn More About Our Work",
+        "cta_title": "Be a Part of the Change",
+        "cta_subtitle": "Your small act of kindness can make a big difference in someone's life.",
         "objectives": [
-            ("Flood relief", "Emergency food, shelter and support during flooding."),
-            ("Medical camps", "Free health check-ups and medicine for the community."),
-            ("Blanket & winter aid", "Distribution during the cold season for those in need."),
+            ("Serve", "Reaching out to those in need with care and compassion.", "heart"),
+            ("Support", "Empowering communities through resources and human support.", "users"),
+            ("Sustain", "Building a better future through sustainable and lasting impact.", "sparkles"),
         ],
-        "stats": [("Families helped", "100s"), ("Response", "Rapid")],
+        "info_items": [
+            ("utensils", "Food & Relief Distribution", "Providing food, essentials, and emergency relief to families in need."),
+            ("graduation-cap", "Education Support", "Helping underprivileged students with books, tuition support and learning resources."),
+            ("heart", "Health & Blood Donation", "Organizing blood drives and health support programs for the well-being of communities."),
+            ("sparkles", "Environment Care", "Promoting a cleaner and greener environment through awareness and action."),
+            ("gift", "Clothing Support", "Distributing clothes and winter items to help people live with dignity."),
+        ],
+        "stats": [
+            ("Lives Touched", "5000+"),
+            ("Humanitarian Activities", "120+"),
+            ("Community Partners", "50+"),
+            ("Years of Service", "10+"),
+            ("People Helped", "5000+"),
+            ("Programs Conducted", "120+"),
+            ("Districts Reached", "30+"),
+            ("Volunteers", "200+"),
+            ("Partner Organizations", "25+"),
+        ],
     },
     {
         "slug": "picnic",
