@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from .models import (
     ProgramGalleryImage,
+    ProgramInfoItem,
     ProgramObjective,
     ProgramPage,
     ProgramStat,
@@ -15,6 +16,14 @@ class ProgramObjectiveSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProgramObjective
         fields = ["id", "title", "description", "icon", "image_url", "order"]
+
+
+class ProgramInfoItemSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
+
+    class Meta:
+        model = ProgramInfoItem
+        fields = ["id", "icon", "label", "value", "order"]
 
 
 class ProgramStatSerializer(serializers.ModelSerializer):
@@ -48,6 +57,7 @@ class ProgramPageSerializer(serializers.ModelSerializer):
     simple delete-and-recreate keeps this predictable without diffing ids."""
 
     objectives = ProgramObjectiveSerializer(many=True, required=False)
+    info_items = ProgramInfoItemSerializer(many=True, required=False)
     stats = ProgramStatSerializer(many=True, required=False)
     gallery = ProgramGalleryImageSerializer(many=True, required=False)
     testimonials = ProgramTestimonialSerializer(many=True, required=False)
@@ -60,7 +70,7 @@ class ProgramPageSerializer(serializers.ModelSerializer):
             "event_date", "venue", "event_time",
             "register_label", "register_url",
             "cta_title", "cta_subtitle",
-            "objectives", "stats", "gallery", "testimonials",
+            "objectives", "info_items", "stats", "gallery", "testimonials",
             "updated_at",
         ]
         read_only_fields = ["id", "updated_at"]
@@ -83,6 +93,7 @@ class ProgramPageSerializer(serializers.ModelSerializer):
     def _pop_nested(validated_data):
         return {
             "objectives": validated_data.pop("objectives", None),
+            "info_items": validated_data.pop("info_items", None),
             "stats": validated_data.pop("stats", None),
             "gallery": validated_data.pop("gallery", None),
             "testimonials": validated_data.pop("testimonials", None),
@@ -92,6 +103,7 @@ class ProgramPageSerializer(serializers.ModelSerializer):
     def _save_nested(page, nested, replace=False):
         model_map = {
             "objectives": ProgramObjective,
+            "info_items": ProgramInfoItem,
             "stats": ProgramStat,
             "gallery": ProgramGalleryImage,
             "testimonials": ProgramTestimonial,

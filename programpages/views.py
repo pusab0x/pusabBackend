@@ -19,7 +19,7 @@ class ProgramPageViewSet(viewsets.ModelViewSet):
     offer a year switcher without a second request."""
 
     queryset = ProgramPage.objects.prefetch_related(
-        "objectives", "stats", "gallery", "testimonials"
+        "objectives", "info_items", "stats", "gallery", "testimonials"
     )
     serializer_class = ProgramPageSerializer
     permission_classes = [IsAdminOrReadOnly]

@@ -13,7 +13,7 @@ from datetime import date
 
 from django.core.management.base import BaseCommand
 
-from programpages.models import ProgramPage, ProgramObjective, ProgramStat
+from programpages.models import ProgramPage, ProgramObjective, ProgramInfoItem, ProgramStat
 
 SEED_YEAR = date.today().year
 
@@ -59,11 +59,12 @@ PAGES = [
     {
         "slug": "schooling",
         "title": "Schooling Program",
-        "tagline": "Free tutoring and mentoring for the upazila's school students.",
+        "tagline": "Empowering underprivileged students by making quality education accessible, inclusive, and sustainable.",
         "overview": (
-            "PUSAB members run free tutoring and mentoring sessions for school students across "
-            "Bishwambarpur — helping with coursework, exam prep, and early career guidance from "
-            "students who've walked the same path."
+            "PUSAB's Schooling Program is dedicated to providing financial support, learning "
+            "materials, and a nurturing environment for students from underprivileged backgrounds.\n\n"
+            "We work with schools, volunteers, and donors to ensure that every child can continue "
+            "their education and dream of a better tomorrow."
         ),
         "eligibility": "Open to school students (classes VI–X) in Bishwambarpur Upazila.",
         "process": (
@@ -71,38 +72,78 @@ PAGES = [
             "guardians. Volunteers are drawn from PUSAB's university-student membership."
         ),
         "schedule_note": "Weekly sessions, running throughout the academic year.",
+        "register_label": "Learn More About Our Work",
+        "cta_title": "Be a Part of Their Journey",
+        "cta_subtitle": "Your support can help a child stay in school and build a better future.",
         "objectives": [
-            ("Academic support", "Tutoring in core subjects for school students."),
-            ("Career mentoring", "Early exposure to higher-education and career paths."),
-            ("Olympiad preparation", "Guidance for students competing in academic olympiads."),
+            ("Access to Education", "Ensuring every child gets the opportunity to learn.", "graduation-cap"),
+            ("Support & Mentorship", "Guiding students to build skills and confidence.", "users"),
+            ("Better Future", "Creating a generation of responsible leaders.", "sparkles"),
         ],
-        "stats": [("Schools covered", "12"), ("Format", "Weekly")],
+        "info_items": [
+            ("graduation-cap", "Program Type", "Education Support"),
+            ("users", "Beneficiaries", "School Students"),
+            ("target", "Focus Areas", "Tuition Support, Books, School Supplies, Mentorship"),
+            ("map-pin", "Coverage", "Bishwambarpur & Surrounding Areas"),
+            ("users", "Target Group", "Underprivileged Students"),
+            ("calendar", "Program Since", "2016"),
+        ],
+        "stats": [
+            ("Students Supported", "850+"),
+            ("Schools Reached", "120+"),
+            ("Volunteers Involved", "200+"),
+            ("Books & Supplies Distributed", "15,000+"),
+            ("Students Continuing Education", "95%"),
+        ],
     },
     {
         "slug": "scholarship",
         "title": "PUSAB Scholarship",
-        "tagline": "Merit and need-based support for deserving students.",
+        "tagline": (
+            "Empowering underprivileged and meritorious students to pursue higher education and "
+            "become future leaders."
+        ),
         "overview": (
-            "The PUSAB Scholarship provides financial aid to deserving students from underserved "
-            "families in Bishwambarpur. Alongside the scholarship, PUSAB also arranges a "
-            "Scholarship Exam for students of classes VIII, IX and X to identify and support "
-            "promising talent early."
+            "The PUSAB Scholarship Program was established to support bright and motivated "
+            "students from underprivileged backgrounds.\n\n"
+            "We believe that financial limitations should never be a barrier to education.\n\n"
+            "Through this program, we provide financial assistance, learning resources and "
+            "continuous encouragement to help students achieve their academic goals and become "
+            "future leaders."
         ),
         "eligibility": (
-            "Students of classes VIII, IX and X from Bishwambarpur Upazila are eligible to sit "
-            "the Scholarship Exam. Financial aid is awarded on a mix of merit and need."
+            "Underprivileged students with strong academic potential, currently enrolled in "
+            "school, college or university, are eligible to apply."
         ),
         "process": (
-            "Applications open annually. Eligible students sit the Scholarship Exam; results and "
-            "awards are announced afterward, with stipends disbursed directly."
+            "Check the eligibility criteria carefully. Fill out the application form with "
+            "required documents. Our team will review your application. Successful candidates "
+            "will be notified and awarded."
         ),
         "schedule_note": "Applications open once a year — watch PUSAB's pages for the exact date.",
+        "register_label": "Apply Now",
+        "cta_title": "Your support can empower a student's future.",
+        "cta_subtitle": "Contribute today and help create a better tomorrow.",
         "objectives": [
-            ("Scholarship Exam", "An annual exam for students of classes VIII, IX and X."),
-            ("Need-based aid", "Financial support prioritising underserved families."),
-            ("Mentor pairing", "Awardees are paired with a PUSAB member mentor."),
+            ("Empower Education", "Removing financial barriers to education.", "graduation-cap"),
+            ("Recognize Merit", "Rewarding hard work, dedication and potential.", "users"),
+            ("Build Leaders", "Shaping confident individuals for a better tomorrow.", "award"),
         ],
-        "stats": [("Classes eligible", "VIII–X"), ("Disbursed", "Annually")],
+        "info_items": [
+            ("graduation-cap", "Who Can Apply?", "Underprivileged students with strong academic potential."),
+            ("target", "What We Cover", "Tuition fees, books, supplies and other education expenses."),
+            ("users", "Selection Process", "Application review, academic evaluation and interview."),
+            ("award", "Renewal", "Based on academic performance and continued need."),
+            ("users", "Mentorship", "Guidance from senior members and professionals."),
+            ("sparkles", "More Than Scholarship", "Building confidence, leadership and a brighter tomorrow."),
+        ],
+        "stats": [
+            ("Scholarships Awarded", "300+"),
+            ("Educational Institutions", "20+"),
+            ("Current Scholars", "50+"),
+            ("Years of Impact", "8+"),
+            ("Students Continuing Their Education", "95%"),
+        ],
     },
     {
         "slug": "humanity",
@@ -206,6 +247,7 @@ class Command(BaseCommand):
 
             if existing:
                 existing.objectives.all().delete()
+                existing.info_items.all().delete()
                 existing.stats.all().delete()
                 page = existing
             else:
@@ -231,6 +273,8 @@ class Command(BaseCommand):
                 ProgramObjective.objects.create(
                     page=page, title=objective[0], description=objective[1], icon=icon, order=i
                 )
+            for i, (icon, label, value) in enumerate(data.get("info_items", [])):
+                ProgramInfoItem.objects.create(page=page, icon=icon, label=label, value=value, order=i)
             for i, (label, value) in enumerate(data["stats"]):
                 ProgramStat.objects.create(page=page, label=label, value=value, order=i)
 

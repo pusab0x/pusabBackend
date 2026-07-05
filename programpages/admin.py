@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from .models import (
     ProgramGalleryImage,
+    ProgramInfoItem,
     ProgramObjective,
     ProgramPage,
     ProgramStat,
@@ -11,6 +12,11 @@ from .models import (
 
 class ProgramObjectiveInline(admin.TabularInline):
     model = ProgramObjective
+    extra = 1
+
+
+class ProgramInfoItemInline(admin.TabularInline):
+    model = ProgramInfoItem
     extra = 1
 
 
@@ -34,4 +40,10 @@ class ProgramPageAdmin(admin.ModelAdmin):
     list_display = ["slug", "year", "title", "updated_at"]
     list_filter = ["slug", "year"]
     search_fields = ["slug", "title"]
-    inlines = [ProgramObjectiveInline, ProgramStatInline, ProgramGalleryImageInline, ProgramTestimonialInline]
+    inlines = [
+        ProgramObjectiveInline,
+        ProgramInfoItemInline,
+        ProgramStatInline,
+        ProgramGalleryImageInline,
+        ProgramTestimonialInline,
+    ]

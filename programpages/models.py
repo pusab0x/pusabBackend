@@ -59,6 +59,8 @@ class ProgramObjective(models.Model):
         ("heart", "Heart (community)"),
         ("music", "Music (entertainment)"),
         ("sparkles", "Sparkles (highlight)"),
+        ("target", "Target (focus areas)"),
+        ("graduation-cap", "Graduation cap (education)"),
     ]
 
     page = models.ForeignKey(ProgramPage, related_name="objectives", on_delete=models.CASCADE)
@@ -73,6 +75,29 @@ class ProgramObjective(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ProgramInfoItem(models.Model):
+    """An icon + label + value cell in a program page's "at a glance" info
+    grid (e.g. Program Type / Beneficiaries / Focus Areas / Coverage /
+    Target Group / Program Since). Distinct from ProgramObjective
+    ("highlights") since it's a label/value fact, not a headline card."""
+
+    ICON_CHOICES = ProgramObjective.ICON_CHOICES + [
+        ("map-pin", "Map pin (coverage)"),
+    ]
+
+    page = models.ForeignKey(ProgramPage, related_name="info_items", on_delete=models.CASCADE)
+    icon = models.CharField(max_length=20, choices=ICON_CHOICES, blank=True)
+    label = models.CharField(max_length=100)
+    value = models.CharField(max_length=200)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["order", "id"]
+
+    def __str__(self):
+        return f"{self.label}: {self.value}"
 
 
 class ProgramStat(models.Model):
