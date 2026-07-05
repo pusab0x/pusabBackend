@@ -17,6 +17,20 @@ class ProgramPage(models.Model):
     eligibility = models.TextField(blank=True)
     process = models.TextField(blank=True)
     schedule_note = models.CharField(max_length=300, blank=True)
+
+    # Event info card (date/venue/time) shown alongside the overview.
+    event_date = models.CharField(max_length=100, blank=True)
+    venue = models.CharField(max_length=200, blank=True)
+    event_time = models.CharField(max_length=100, blank=True)
+
+    # Register / RSVP call-to-action, used both inline and in the CTA banner.
+    register_label = models.CharField(max_length=60, blank=True)
+    register_url = models.URLField(max_length=600, blank=True)
+
+    # Bottom CTA banner copy.
+    cta_title = models.CharField(max_length=200, blank=True)
+    cta_subtitle = models.CharField(max_length=300, blank=True)
+
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -30,11 +44,27 @@ class ProgramPage(models.Model):
 
 
 class ProgramObjective(models.Model):
-    """A compact photo + short-note card under a program page's "Objectives" section."""
+    """A "highlight" card on a program page — icon + title + short note.
+    Used for grids like "Reunion Highlights" (Reconnect, Inspiring Talks,
+    Memorable Moments, ...). Can optionally use a photo instead of an icon."""
+
+    ICON_CHOICES = [
+        ("users", "Users (group / reconnect)"),
+        ("mic", "Mic (talks / speeches)"),
+        ("camera", "Camera (photos / moments)"),
+        ("award", "Award (recognition)"),
+        ("utensils", "Utensils (food / dinner)"),
+        ("gift", "Gift (surprises)"),
+        ("calendar", "Calendar (schedule)"),
+        ("heart", "Heart (community)"),
+        ("music", "Music (entertainment)"),
+        ("sparkles", "Sparkles (highlight)"),
+    ]
 
     page = models.ForeignKey(ProgramPage, related_name="objectives", on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     description = models.CharField(max_length=300, blank=True)
+    icon = models.CharField(max_length=20, choices=ICON_CHOICES, blank=True)
     image_url = models.URLField(max_length=600, blank=True)
     order = models.PositiveIntegerField(default=0)
 

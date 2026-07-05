@@ -14,7 +14,7 @@ class ProgramObjectiveSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProgramObjective
-        fields = ["id", "title", "description", "image_url", "order"]
+        fields = ["id", "title", "description", "icon", "image_url", "order"]
 
 
 class ProgramStatSerializer(serializers.ModelSerializer):
@@ -57,6 +57,9 @@ class ProgramPageSerializer(serializers.ModelSerializer):
         fields = [
             "id", "slug", "year", "title", "tagline", "hero_image_url",
             "overview", "eligibility", "process", "schedule_note",
+            "event_date", "venue", "event_time",
+            "register_label", "register_url",
+            "cta_title", "cta_subtitle",
             "objectives", "stats", "gallery", "testimonials",
             "updated_at",
         ]

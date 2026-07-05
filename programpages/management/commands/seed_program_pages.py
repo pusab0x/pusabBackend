@@ -35,12 +35,26 @@ PAGES = [
             "catering and the programme lineup."
         ),
         "schedule_note": "Held once a year, typically in December.",
+        "event_date": "December, Every Year",
+        "venue": "Bishwambarpur, Sunamganj",
+        "event_time": "6:00 PM – 11:00 PM",
+        "register_label": "Register for Reunion",
+        "cta_title": "Be Part of the Tradition",
+        "cta_subtitle": "Register now and make this reunion our most memorable yet!",
         "objectives": [
-            ("Cross-batch networking", "Connect members across different universities and graduation years."),
-            ("Recognise achievers", "Honour members who brought pride to Bishwambarpur that year."),
-            ("Cultural programme", "An evening of performances, games and shared food."),
+            ("Reconnect", "Catch up with old friends and expand your network.", "users"),
+            ("Inspiring Talks", "Engage with thought leaders and alumni achievers.", "mic"),
+            ("Memorable Moments", "Enjoy entertainment, group activities and more.", "camera"),
+            ("Alumni Recognition", "Honoring outstanding alumni and their contributions.", "award"),
+            ("Dinner & Networking", "Share a meal and build meaningful connections.", "utensils"),
+            ("Surprises & More", "Exciting surprises and memorable keepsakes.", "gift"),
         ],
-        "stats": [("Members attending", "500+"), ("Years running", "10+")],
+        "stats": [
+            ("Members attending", "500+"),
+            ("Universities", "66"),
+            ("Total Alumni Network", "67,777+"),
+            ("Years of Reunion", "10+"),
+        ],
     },
     {
         "slug": "schooling",
@@ -203,10 +217,20 @@ class Command(BaseCommand):
             page.eligibility = data["eligibility"]
             page.process = data["process"]
             page.schedule_note = data["schedule_note"]
+            page.event_date = data.get("event_date", "")
+            page.venue = data.get("venue", "")
+            page.event_time = data.get("event_time", "")
+            page.register_label = data.get("register_label", "")
+            page.register_url = data.get("register_url", "")
+            page.cta_title = data.get("cta_title", "")
+            page.cta_subtitle = data.get("cta_subtitle", "")
             page.save()
 
-            for i, (title, desc) in enumerate(data["objectives"]):
-                ProgramObjective.objects.create(page=page, title=title, description=desc, order=i)
+            for i, objective in enumerate(data["objectives"]):
+                icon = objective[2] if len(objective) > 2 else ""
+                ProgramObjective.objects.create(
+                    page=page, title=objective[0], description=objective[1], icon=icon, order=i
+                )
             for i, (label, value) in enumerate(data["stats"]):
                 ProgramStat.objects.create(page=page, label=label, value=value, order=i)
 
