@@ -26,4 +26,5 @@ urlpatterns = [
     path("api/", include("siteconfig.urls")),
     path("api/", include("felicitation.urls")),
     path("api/", include("programpages.urls")),
+    path("api/", include("testimonials.urls")),
 ]
