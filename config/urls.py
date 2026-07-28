@@ -27,4 +27,5 @@ urlpatterns = [
     path("api/", include("felicitation.urls")),
     path("api/", include("programpages.urls")),
     path("api/", include("testimonials.urls")),
+    path("api/", include("pagehero.urls")),
 ]
