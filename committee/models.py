@@ -1,5 +1,48 @@
 from django.db import models
 
+# Canonical Executive Committee designation hierarchy — members should list
+# President down to Executive Member in this order, not alphabetically.
+# Keep this in sync with src/lib/designation.ts on the frontend.
+DESIGNATION_ORDER = [
+    "President",
+    "Vice President",
+    "General Secretary",
+    "Joint General Secretary",
+    "Treasurer",
+    "Organizing Secretary",
+    "Office Secretary",
+    "Assistant Office Secretary",
+    "Publicity Secretary",
+    "Assistant Publicity Secretary",
+    "Human Resource Development Secretary",
+    "Assistant Human Resource Development Secretary",
+    "Compilation and Publication Secretary",
+    "Assistant Compilation and Publication Secretary",
+    "Schooling Secretary",
+    "Assistant Schooling Secretary",
+    "Scholarship Secretary",
+    "Assistant Scholarship Secretary",
+    "Information and Technology Secretary",
+    "Assistant Information and Technology Secretary",
+    "Hospitality Secretary",
+    "Assistant Hospitality Secretary",
+    "Cultural Secretary",
+    "Assistant Cultural Secretary",
+    "Sports Secretary",
+    "Assistant Sports Secretary",
+    "Health Secretary",
+    "Assistant Health Secretary",
+    "Assistant Secretary",
+    "Executive Member",
+]
+
+DESIGNATION_RANK = {role.lower(): i for i, role in enumerate(DESIGNATION_ORDER)}
+
+
+def designation_rank(role: str) -> int:
+    """Rank of a role in the designation hierarchy — unknown roles sort last."""
+    return DESIGNATION_RANK.get(role.strip().lower(), len(DESIGNATION_ORDER))
+
 
 class EcMember(models.Model):
     """An Executive Committee member for a given session year."""
