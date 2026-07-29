@@ -15,6 +15,7 @@ class PublicityPostSerializer(serializers.ModelSerializer):
             "link",
             "image_url",
             "date",
+            "author",
             "published",
             "created_at",
         ]
