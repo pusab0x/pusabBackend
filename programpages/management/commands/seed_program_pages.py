@@ -1,5 +1,5 @@
 """
-Seed the 7 program detail pages with starter content, so /programs/<slug>
+Seed the program detail pages with starter content, so /programs/<slug>
 isn't blank before real content is added from the dashboard.
 
 Usage (from the backend/ directory):
@@ -335,11 +335,55 @@ PAGES = [
         ],
         "stats": [("Ceremony", "Combined"), ("Held", "Annually")],
     },
+    {
+        "slug": "sports",
+        "title": "Sports",
+        "tagline": "Football, cricket and a season of friendly rivalry.",
+        "overview": (
+            "PUSAB Sports brings members onto the field together — football and cricket "
+            "tournaments, indoor games and friendly matches played across the season. "
+            "Teams are formed across batches and universities, so a first-year student "
+            "and a graduate can end up on the same side.\n\n"
+            "The aim is simple: keep members active, keep them connected, and give "
+            "everyone a reason to come home to Bishwambarpur for a weekend of play."
+        ),
+        "eligibility": "Open to all PUSAB members, whatever their skill level.",
+        "process": (
+            "Team registration opens ahead of each tournament through the PUSAB group and "
+            "social pages. Members sign up individually or as a team, and the organizing "
+            "committee handles fixtures, the venue and equipment."
+        ),
+        "schedule_note": "Tournaments run through the winter season.",
+        "event_date": "Winter Season, Every Year",
+        "venue": "Bishwambarpur, Sunamganj",
+        "event_time": "Morning – Evening",
+        "register_label": "Register your team",
+        "cta_title": "Get in the game",
+        "cta_subtitle": "Bring your boots and join the next PUSAB tournament.",
+        "objectives": [
+            ("Tournaments", "Football and cricket played across the season.", "award"),
+            ("Open to All", "Every member is welcome, whatever their level.", "users"),
+            ("Fitness First", "Staying active together, on and off the field.", "heart"),
+            ("Team Spirit", "Friendly rivalry that ends in a shared meal.", "sparkles"),
+        ],
+        "info_items": [
+            ("award", "Program Type", "Inter-batch tournaments and friendly matches."),
+            ("users", "Who Can Join", "All PUSAB members, from freshers to alumni."),
+            ("target", "Sports Covered", "Football, cricket and indoor games."),
+            ("map-pin", "Where", "Local grounds across Bishwambarpur Upazila."),
+        ],
+        "stats": [
+            ("Sports", "3+"),
+            ("Teams", "8+"),
+            ("Players", "100+"),
+            ("Season", "Winter"),
+        ],
+    },
 ]
 
 
 class Command(BaseCommand):
-    help = "Seed the 7 program detail pages with starter content."
+    help = "Seed the program detail pages with starter content."
 
     def add_arguments(self, parser):
         parser.add_argument(
