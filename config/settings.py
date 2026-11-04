@@ -52,6 +52,7 @@ LOCAL_APPS = [
     "programpages",
     "testimonials",
     "pagehero",
+    "exam",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -132,6 +133,8 @@ REST_FRAMEWORK = {
     "DEFAULT_THROTTLE_RATES": {
         "anon": "60/min",          # general public endpoints
         "contact_submit": "3/hour", # membership form submissions
+        "exam_apply": "60/hour",    # exam applications (cyber cafés / CGNAT share IPs)
+        "exam_status": "120/hour",  # application status / admit card lookups
     },
 }
 
