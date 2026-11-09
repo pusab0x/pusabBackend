@@ -36,6 +36,13 @@ class ApplyAndStatusTests(TestCase):
     def apply(self, **overrides):
         return self.client.post("/api/exam/apply/", payload(**overrides), format="json")
 
+    def test_status_returns_the_full_application(self):
+        no = self.apply().data["application_no"]
+        res = self.client.post("/api/exam/status/", {"application_no": no, "phone": "01712345678"}, format="json")
+        self.assertEqual(res.status_code, 200)
+        for field in ("mother_name", "father_name", "phone", "village", "union"):
+            self.assertTrue(res.data[field])
+
     def test_bengali_fields_reject_english(self):
         for field in ("name_bn", "institution", "village"):
             res = self.apply(**{field: "Rakib Hasan"})

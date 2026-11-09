@@ -114,8 +114,9 @@ class ApplicationStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExamApplication
         fields = [
-            "application_no", "name_bn", "name_en", "photo_url", "class_level", "class_label",
-            "institution", "center", "payment_method", "payment_label", "trx_id", "amount",
+            "application_no", "name_bn", "name_en", "mother_name", "father_name", "phone",
+            "photo_url", "class_level", "class_label", "institution", "village", "union",
+            "center", "payment_method", "payment_label", "trx_id", "amount",
             "status", "serial_no", "roll_no", "admit_available", "note", "created_at",
         ]
 
