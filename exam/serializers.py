@@ -96,6 +96,9 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
             )
         for key in ("name_bn", "mother_name", "father_name", "institution", "village", "union"):
             attrs[key] = attrs[key].strip()
+        for key in ("name_bn", "institution", "village"):
+            if re.search(r"[A-Za-z]", attrs[key]) or not re.search(r"[\u0980-\u09FF]", attrs[key]):
+                raise serializers.ValidationError({key: "বাংলায় লিখুন।"})
         return attrs
 
 

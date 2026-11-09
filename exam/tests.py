@@ -36,6 +36,12 @@ class ApplyAndStatusTests(TestCase):
     def apply(self, **overrides):
         return self.client.post("/api/exam/apply/", payload(**overrides), format="json")
 
+    def test_bengali_fields_reject_english(self):
+        for field in ("name_bn", "institution", "village"):
+            res = self.apply(**{field: "Rakib Hasan"})
+            self.assertEqual(res.status_code, 400)
+            self.assertIn(field, res.data)
+
     def test_apply_assigns_number_and_normalizes(self):
         res = self.apply()
         self.assertEqual(res.status_code, 201, res.data)
